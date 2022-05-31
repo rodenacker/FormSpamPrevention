@@ -1,10 +1,10 @@
 # Form Spam Prevention Method
 
-A reliable method preventing spam bots from submitting input and textarea fields in online forms (e.g. contact forms)
+A reliable method preventing spam bots from completing input and textarea fields in online forms (e.g. contact forms)
 
 ## Why it works
 
-Bots do not execute JavaScript, so this method uses JavaScript to generate form elements. These elements do not exist in the plan html and are not used by spam bots (works in June 2022)
+This method relies on the fact that spam bots do not execute Javascript. It uses a script that converts custom tags (<ff>) to html form elements when the page loads. This means that the html does not need to contain any input or textarea elements and spam bots cannot complete them (works in June 2022)
 
 ## Usage
 
