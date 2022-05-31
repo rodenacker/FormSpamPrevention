@@ -1,15 +1,15 @@
 # Form Spam Prevention Method
 
-A simple script to prevent bots from submitting input and textarea fields in online forms
+A reliable method preventing spam bots from submitting input and textarea fields in online forms (e.g. contact forms)
 
 ## Why it works
 
-Bots do not execute JavaScript, so generating form elements using JavaScript means bots do not have any html elements to populate (works in June 2022)
+Bots do not execute JavaScript, so this method uses JavaScript to generate form elements. These elements do not exist in the plan html and are not used by spam bots (works in June 2022)
 
 ## Usage
 
-1. Add a form field wrapper tag (example uses a div tag)
-2. Add a label tag. The label text will become the form field name property
+1. Add a tag with the name ff
+2. Add a "field" attribute with 
 3. Add an element of your choice with classname "input" or "textarea". This element will be transformed into an input or textarea element
 4. Add the script below to the page. When the page loads it performs the transformations
 

@@ -9,18 +9,28 @@
 <body>
     <form action="" method="POST">
         <div>
+            <span>Your Name</span>
+            <ff field="input" type="text" name="name" class="formfield">
+        </div>
+        <div>
             <span>Email</span>
-            <ff field="input" type="email" class="formfield">
+            <ff field="input" type="email" onclick="myValidationScript();">
         </div>
         <div>
             <span>Message</span>
-            <ff field="textarea" name="message">
+            <ff field="textarea" name="message" style="height:40px;width:200px;">
         </div>
         <div>
             <span>Message</span>
-            <ff field="textarea">
+            <ff field="input" type="radio" name="myradiobutton" value="Yes">
+            <ff field="input" type="radio" name="myradiobutton" value="No">
         </div>
-        <button type="Submit">Send</button>
+        <div>
+            <span>Checkboxes</span>
+            <ff field="input" type="checkbox" name="mycheckbox1" value="Green">
+            <ff field="input" type="checkbox" name="mycheckbox2" value="Blue">
+        </div>
+        <ff field="input" type="button" name="submit" value="Submit"></ff>
     </form>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
