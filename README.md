@@ -23,6 +23,25 @@ Bots do not execute JavaScript, so this method uses JavaScript to generate form 
 <ff field="textarea" name="message" style="height:40px;width:200px;">
 ```
 4. Add the script below to the page. When the page loads it transforms the ff tags to input or textarea fields
+```
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const fields = document.getElementsByTagName("ff");
+      for (let i=fields.length-1;i>=0;i--){
+          let attrs = fields[i].getAttributeNames().reduce((acc, name) => {
+              return {...acc, [name]: fields[i].getAttribute(name)};
+          }, {});
+          let el = document.createElement(attrs["field"]);
+          for (let key in attrs){
+              if(attrs.hasOwnProperty(key) && key != "field"){
+                  el.setAttribute(`${key}`, `${attrs[key]}`);
+              }
+          }
+          fields[i].parentNode.insertBefore(el, fields[i]);
+      }
+  });
+</script>
+```
 
 ## Example
 ```
