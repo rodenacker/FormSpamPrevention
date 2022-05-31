@@ -17,44 +17,41 @@
             <ff field="input" type="email" onclick="myValidationScript();">
         </div>
         <div>
-            <span>Message</span>
-            <ff field="textarea" name="message" style="height:40px;width:200px;">
+            <span>Message1</span>
+            <ff field="textarea" name="message1" style="height:40px;width:200px;">
         </div>
         <div>
-            <span>Message</span>
-            <ff field="input" type="radio" name="myradiobutton" value="Yes">
-            <ff field="input" type="radio" name="myradiobutton" value="No">
+            <span>Message2</span>
+            <ff field="textarea" name="message2" style="height:40px;width:200px;">
         </div>
         <div>
             <span>Checkboxes</span>
             <ff field="input" type="checkbox" name="mycheckbox1" value="Green">
             <ff field="input" type="checkbox" name="mycheckbox2" value="Blue">
         </div>
+        <div>
+            <span>Radio Buttons</span>
+            <ff field="input" type="radio" name="myradio" value="Yes">
+            <ff field="input" type="radio" name="myradio" value="No">
+        </div>
         <ff field="input" type="button" name="submit" value="Submit"></ff>
     </form>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const fields = document.getElementsByTagName("ff");
-            let replaceFields = [];
-            for (let i=0;i<fields.length;i++){
-                let attributes = fields[i].getAttributeNames().reduce((acc, name) => {
+            for (let i=fields.length-1;i>=0;i--){
+                let attrs = fields[i].getAttributeNames().reduce((acc, name) => {
                     return {...acc, [name]: fields[i].getAttribute(name)};
                 }, {});
-                replaceFields.push({"o": fields[i], "n": createField(fields[i], attributes)});
-            }
-            for (i=0;i<replaceFields.length;i++){
-                replaceFields[i]["o"].parentNode.replaceChild(replaceFields[i]["n"], replaceFields[i]["o"]);
+                let el = document.createElement(attrs["field"]);
+                for (let key in attrs){
+                    if(attrs.hasOwnProperty(key) && key != "field"){
+                        el.setAttribute(`${key}`, `${attrs[key]}`);
+                    }
+                }
+                fields[i].parentNode.insertBefore(el, fields[i]);
             }
         });
-        function createField(tag, properties) {
-            const el = document.createElement(properties["field"]);
-            for (let key in properties){
-                if(properties.hasOwnProperty(key) && key != "field"){
-                    el.setAttribute(`${key}`, `${properties[key]}`);
-                }
-            }
-            return el;
-        }
     </script>
 </body>
 </html>
