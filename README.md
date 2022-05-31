@@ -13,7 +13,7 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
 3. Add an element of your choice with classname "input" or "textarea". This element will be transformed into an input or textarea element
 4. Add the script below to the page. When the page loads it performs the transformations
 
-# Example
+## Example
 ```
 <div>
  <label>Name</label>
@@ -40,3 +40,15 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
  }
 </script>
 ```
+
+## Result
+
+```
+<div>
+ <label>Name</label>
+ <input type="input" name="Name">
+</div>
+<div>
+ <label>Message</label>
+ <textarea type="textarea" name="Message"></textarea>
+</div>
