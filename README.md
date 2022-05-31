@@ -1,4 +1,4 @@
-# FormSpamPrevention
+# Form Spam Prevention Method
 
 A simple script to prevent bots from submitting input and textarea fields in online forms
 
