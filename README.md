@@ -34,7 +34,7 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
  });
   function replaceMe(placeholder, elementType, nameProp) {
    const formField = document.createElement(elementType);
-   formField.setAttribute("type", elementType);
+   formField.setAttribute("type", "text");
    formField.setAttribute("name", nameProp);
    placeholder.parentNode.replaceChild(formField, placeholder);
  }
@@ -46,9 +46,9 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
 ```
 <div>
  <label>Name</label>
- <input type="input" name="Name">
+ <input type="text" name="Name">
 </div>
 <div>
  <label>Message</label>
- <textarea type="textarea" name="Message"></textarea>
+ <textarea type="text" name="Message"></textarea>
 </div>
