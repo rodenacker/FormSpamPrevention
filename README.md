@@ -19,6 +19,10 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
  <label>Name</label>
  <span class="input"></span>
 </div>
+<div>
+ <label>Message</label>
+ <span class="textarea"></span>
+</div>
 
 <script>
  document.addEventListener("DOMContentLoaded", function () {
