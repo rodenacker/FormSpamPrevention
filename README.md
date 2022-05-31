@@ -14,7 +14,7 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
 4. Add the script below to the page. When the page loads it performs the transformations
 
 # Example
-...
+```
 <div>
  <label>Name</label>
  <span class="input"></span>
@@ -35,4 +35,4 @@ Bots do not execute JavaScript, so generating form elements using JavaScript mea
    placeholder.parentNode.replaceChild(formField, placeholder);
  }
 </script>
-...
+```
