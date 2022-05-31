@@ -4,7 +4,7 @@ A reliable method preventing spam bots from completing input and textarea fields
 
 ## Why it works
 
-This method relies on the fact that spam bots do not execute Javascript. It uses a script that converts custom tags (<ff>) to html form elements when the page loads. This means that the html does not need to contain any input or textarea elements and spam bots cannot complete them (works in June 2022)
+This method relies on the fact that spam bots do not execute Javascript. It uses a script that converts custom tags (\<ff>) to html form elements when the page loads. This means that the html does not need to contain any input or textarea elements and spam bots cannot complete them (works in June 2022)
 
 ## Usage
 
