@@ -9,46 +9,66 @@ Bots do not execute JavaScript, so this method uses JavaScript to generate form 
 ## Usage
 
 1. Add a tag with the name ff
-2. Add a "field" attribute with 
-3. Add an element of your choice with classname "input" or "textarea". This element will be transformed into an input or textarea element
-4. Add the script below to the page. When the page loads it performs the transformations
+```
+<ff>
+```
+2. Add a "field" attribute with the type of field you want to create 
+```
+<ff field="input">
+<ff field="textarea">
+```
+3. Add any attributes you want the field to have
+```
+<ff field="input" type="text" name="name" class="formfield">
+<ff field="textarea" name="message" style="height:40px;width:200px;">
+```
+4. Add the script below to the page. When the page loads it transforms the ff tags to input or textarea fields
 
 ## Example
 ```
 <div>
- <label>Name</label>
- <span class="input"></span>
+    <span>Your Name</span>
+    <ff field="input" type="text" name="name" class="formfield">
 </div>
 <div>
- <label>Message</label>
- <span class="textarea"></span>
+    <span>Email</span>
+    <ff field="input" type="email" onclick="myValidationScript();">
 </div>
+<div>
+    <span>Message1</span>
+    <ff field="textarea" name="message1" style="height:40px;width:200px;">
+</div>
+<div>
+    <span>Message2</span>
+    <ff field="textarea" name="message2" style="height:40px;width:200px;">
+</div>
+<div>
+    <span>Checkboxes</span>
+    <ff field="input" type="checkbox" name="mycheckbox1" value="Green">
+    <ff field="input" type="checkbox" name="mycheckbox2" value="Blue">
+</div>
+<div>
+    <span>Radio Buttons</span>
+    <ff field="input" type="radio" name="myradio" value="Yes">
+    <ff field="input" type="radio" name="myradio" value="No">
+</div>
+<ff field="input" type="button" name="submit" value="Submit"></ff>
 
 <script>
- document.addEventListener("DOMContentLoaded", function () {
-  const fields = document.querySelectorAll(".input, .textarea");
-   for (i=0;i<fields.length;i++){
-    let label = fields[i].parentNode.getElementsByTagName("label")[0].innerText;
-    replaceMe(fields[i], fields[i].className, label);
-   }
- });
-  function replaceMe(placeholder, elementType, nameProp) {
-   const formField = document.createElement(elementType);
-   formField.setAttribute("type", "text");
-   formField.setAttribute("name", nameProp);
-   placeholder.parentNode.replaceChild(formField, placeholder);
- }
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.getElementsByTagName("ff");
+        for (let i=fields.length-1;i>=0;i--){
+            let attrs = fields[i].getAttributeNames().reduce((acc, name) => {
+                return {...acc, [name]: fields[i].getAttribute(name)};
+            }, {});
+            let el = document.createElement(attrs["field"]);
+            for (let key in attrs){
+                if(attrs.hasOwnProperty(key) && key != "field"){
+                    el.setAttribute(`${key}`, `${attrs[key]}`);
+                }
+            }
+            fields[i].parentNode.insertBefore(el, fields[i]);
+        }
+    });
 </script>
 ```
-
-## Result
-
-```
-<div>
- <label>Name</label>
- <input type="text" name="Name">
-</div>
-<div>
- <label>Message</label>
- <textarea type="text" name="Message"></textarea>
-</div>
