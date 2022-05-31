@@ -10,15 +10,15 @@
     <form action="" method="POST">
         <div>
             <span>Email</span>
-            <ff type="input" attributes="type|email;class|formfield">
+            <ff field="input" type="email" class="formfield">
         </div>
         <div>
             <span>Message</span>
-            <ff type="textarea" attributes="name|message">
+            <ff field="textarea" name="message">
         </div>
         <div>
             <span>Message</span>
-            <ff type="textarea">
+            <ff field="textarea">
         </div>
         <button type="Submit">Send</button>
     </form>
@@ -26,30 +26,21 @@
         document.addEventListener("DOMContentLoaded", function () {
             const fields = document.getElementsByTagName("ff");
             let replaceFields = [];
-            for (i=0;i<fields.length;i++){
+            for (let i=0;i<fields.length;i++){
                 let attributes = fields[i].getAttributeNames().reduce((acc, name) => {
                     return {...acc, [name]: fields[i].getAttribute(name)};
                 }, {});
-                let newField = returnField(fields[i], attributes);
-                replaceFields.push({"oldField": fields[i], "newField": newField});
+                replaceFields.push({"o": fields[i], "n": createField(fields[i], attributes)});
             }
             for (i=0;i<replaceFields.length;i++){
-                replaceFields[i]["oldField"].parentNode.replaceChild(replaceFields[i]["newField"], replaceFields[i]["oldField"]);
+                replaceFields[i]["o"].parentNode.replaceChild(replaceFields[i]["n"], replaceFields[i]["o"]);
             }
         });
-        function returnField(tag, properties) {
-            const el = document.createElement(properties["type"]);
-            let attributes = properties["attributes"];
-            if (typeof attributes != "undefined") {
-                let arrAttributes = [];
-                if (attributes.indexOf(";") > -1){
-                    arrAttributes = attributes.split(";");
-                } else {
-                    arrAttributes.push(attributes);
-                }
-                for (a=0;a<arrAttributes.length;a++){
-                    let vals = arrAttributes[a].split("|");
-                    el.setAttribute(vals[0], vals[1]);
+        function createField(tag, properties) {
+            const el = document.createElement(properties["field"]);
+            for (let key in properties){
+                if(properties.hasOwnProperty(key) && key != "field"){
+                    el.setAttribute(`${key}`, `${properties[key]}`);
                 }
             }
             return el;

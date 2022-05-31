@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormSpam Prevention</title>
+</head>
+<body>
+    <form action="" method="POST">
+        <div>
+            <span>Email</span>
+            <ff type="input" attributes="type|email;class|formfield">
+        </div>
+        <div>
+            <span>Message</span>
+            <ff type="textarea" attributes="name|message">
+        </div>
+        <div>
+            <span>Message</span>
+            <ff type="textarea">
+        </div>
+        <button type="Submit">Send</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fields = document.getElementsByTagName("ff");
+            let replaceFields = [];
+            for (i=0;i<fields.length;i++){
+                let attributes = fields[i].getAttributeNames().reduce((acc, name) => {
+                    return {...acc, [name]: fields[i].getAttribute(name)};
+                }, {});
+                let newField = returnField(fields[i], attributes);
+                replaceFields.push({"oldField": fields[i], "newField": newField});
+            }
+            for (i=0;i<replaceFields.length;i++){
+                replaceFields[i]["oldField"].parentNode.replaceChild(replaceFields[i]["newField"], replaceFields[i]["oldField"]);
+            }
+        });
+        function returnField(tag, properties) {
+            const el = document.createElement(properties["type"]);
+            let attributes = properties["attributes"];
+            if (typeof attributes != "undefined") {
+                let arrAttributes = [];
+                if (attributes.indexOf(";") > -1){
+                    arrAttributes = attributes.split(";");
+                } else {
+                    arrAttributes.push(attributes);
+                }
+                for (a=0;a<arrAttributes.length;a++){
+                    let vals = arrAttributes[a].split("|");
+                    el.setAttribute(vals[0], vals[1]);
+                }
+            }
+            return el;
+        }
+    </script>
+</body>
+</html>
