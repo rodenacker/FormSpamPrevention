@@ -41,11 +41,12 @@ This method relies on the fact that spam bots do not execute Javascript. It uses
                     el.setAttribute(`${key}`, `${attrs[key]}`);
                 }
             }
-            const childFields = fields[i].childNodes;
-            fields[i].parentNode.insertBefore(el, fields[i]);
             while (fields[i].childNodes.length > 0) {
+                console.log(fields[i].childNodes)
                 el.appendChild(fields[i].childNodes[0]);
             }
+            fields[i].parentNode.insertBefore(el, fields[i]);
+            fields[i].remove();
         }
     });
 </script>
@@ -100,11 +101,12 @@ This method relies on the fact that spam bots do not execute Javascript. It uses
                     el.setAttribute(`${key}`, `${attrs[key]}`);
                 }
             }
-            const childFields = fields[i].childNodes;
-            fields[i].parentNode.insertBefore(el, fields[i]);
             while (fields[i].childNodes.length > 0) {
+                console.log(fields[i].childNodes)
                 el.appendChild(fields[i].childNodes[0]);
             }
+            fields[i].parentNode.insertBefore(el, fields[i]);
+            fields[i].remove();
         }
     });
 </script>
