@@ -21,6 +21,8 @@ This method relies on the fact that spam bots do not execute Javascript. It uses
 ```
 <ff field="input" type="text" name="name" class="formfield">
 <ff field="textarea" name="message" style="height:40px;width:200px;">
+<ff field="input" type="checkbox" name="mycheckbox" value="Yes" checked>
+<ff field="input" type="checkbox" name="mycheckbox" value="No">
 ```
 4. Add the script below to the page. When the page loads it transforms the ff tags to input or textarea fields
 ```
