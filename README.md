@@ -42,7 +42,6 @@ This method relies on the fact that spam bots do not execute Javascript. It uses
                 }
             }
             while (fields[i].childNodes.length > 0) {
-                console.log(fields[i].childNodes)
                 el.appendChild(fields[i].childNodes[0]);
             }
             fields[i].parentNode.insertBefore(el, fields[i]);
@@ -102,7 +101,6 @@ This method relies on the fact that spam bots do not execute Javascript. It uses
                 }
             }
             while (fields[i].childNodes.length > 0) {
-                console.log(fields[i].childNodes)
                 el.appendChild(fields[i].childNodes[0]);
             }
             fields[i].parentNode.insertBefore(el, fields[i]);
