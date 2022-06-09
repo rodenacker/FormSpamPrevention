@@ -26,27 +26,27 @@ This method implments a small bit of Javascript that converts elements that use 
 <f-f el="textarea" name="message" style="height:40px;width:200px;"></f-f>
 <f-f el="select" name="mycheckbox2"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option></f-f>
 ```
-4. Add the script below to the page. When the page loads it transforms the ff tags to input or textarea els
+4. Add the script below to the page. When the page loads it creates a new element from the el attribute in all f-f elements, leaving all other attributes and child elements in place. It then removes the f-f element from the DOM
 ```
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        window.customElements.define('f-f', class extends HTMLElement {}); //register the custom element 
-        const els = document.getElementsByTagName("f-f"); //get an array of the els to convert
-        for (let i=els.length-1;i>=0;i--){
-            let attrs = els[i].getAttributeNames().reduce((acc, name) => {
+        window.customElements.define('f-f', class extends HTMLElement {});  //register the custom element 
+        const els = document.getElementsByTagName("f-f");                   //get an array of f-f elements to convert
+        for (let i=els.length-1;i>=0;i--){                                  //loop through the array of elements
+            let attrs = els[i].getAttributeNames().reduce((acc, name) => {  //create an object of the attributes
                 return {...acc, [name]: els[i].getAttribute(name)};
             }, {});
-            let el = document.createElement(attrs["el"]);
-            for (let key in attrs){
-                if(attrs.hasOwnProperty(key) && key != "el"){
-                    el.setAttribute(`${key}`, `${attrs[key]}`);
+            let el = document.createElement(attrs["el"]);                   //create a new element using the el attribute
+            for (let key in attrs){                                         //loop through the artray of attributes
+                if(attrs.hasOwnProperty(key) && key != "el"){               //filter out the el attribute
+                    el.setAttribute(`${key}`, `${attrs[key]}`);             //add all other attributes to the new element
                 }
             }
-            while (els[i].childNodes.length > 0) {
-                el.appendChild(els[i].childNodes[0]);
+            while (els[i].childNodes.length > 0) {                          //loop though the child nodes of the f-f
+                el.appendChild(els[i].childNodes[0]);                       //append child nodes to the new element
             }
-            els[i].parentNode.insertBefore(el, els[i]);
-            els[i].remove();
+            els[i].parentNode.insertBefore(el, els[i]);                     //insert the new element into the DOM
+            els[i].remove();                                                //remove the f-f element from the DOM
         }
     });
 </script>
