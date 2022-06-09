@@ -1,10 +1,10 @@
 # Form Spam Prevention: The Custom Tag Method
 
-A reliable method preventing spam bots from completing input, select and textarea els in online forms (e.g. contact forms)
+A reliable method to prevent spam bots from completing input, select and textarea fields in online forms (e.g. contact forms)
 
-## Why it works
+## How it works
 
-This method implments a small bit of Javascript that converts elements that use a custom tag (in this case \<f-f>\</f-f>) to any other html form element on page load. When using this method the page html does not need to contain any input, select or textarea elements that automated systems can populate (works in June 2022). This works with any custom tag and can be changed very easily. 
+This method implments a small bit of Javascript that converts elements that use a custom tag (in this case \<f-f>\</f-f>) to any other html form element when a page loads. When using this method the page html does not need to contain any input, select or textarea elements that automated systems can populate (works in June 2022). 
 
 ## Usage
 
@@ -18,7 +18,7 @@ This method implments a small bit of Javascript that converts elements that use 
 <f-f el="textarea"></f-f>
 <f-f el="select"></f-f>
 ```
-3. Add any attributes you want the el to have
+3. Add any attributes you want your element to have
 ```
 <f-f el="input" type="text" name="name" class="formel"></f-f>
 <f-f el="input" type="checkbox" name="mycheckbox" value="Yes" checked></f-f>
@@ -26,7 +26,7 @@ This method implments a small bit of Javascript that converts elements that use 
 <f-f el="textarea" name="message" style="height:40px;width:200px;"></f-f>
 <f-f el="select" name="mycheckbox2"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option></f-f>
 ```
-4. Add the script below to the page. When the page loads it creates a new element from the el attribute in all f-f elements, leaving all other attributes and child elements in place. It then removes the f-f element from the DOM
+4. Add the script below to the page. When the page loads it creates a new element using the "el" attribute in all f-f elements. It then adds all other attributes and all child elements to the new element before removing the f-f element from the DOM.
 ```
 <script>
     document.addEventListener("DOMContentLoaded", function () {
