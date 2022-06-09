@@ -1,4 +1,4 @@
-# The Custom Tag Method
+# Form Spam Prevention: The Custom Tag Method
 
 A reliable method preventing spam bots from completing input, select and textarea els in online forms (e.g. contact forms)
 
