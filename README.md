@@ -29,26 +29,38 @@ This method implments a small bit of Javascript that converts one html element t
 4. Add the script below to the page. When the page loads it creates a new element using the "el" attribute in all f-f elements. It then adds all other attributes and all child elements to the new element before removing the f-f element from the DOM.
 ```
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        window.customElements.define('f-f', class extends HTMLElement {});  //register the custom element 
-        const els = document.getElementsByTagName("f-f");                   //get an array of f-f elements to convert
-        for (let i=els.length-1;i>=0;i--){                                  //loop through the array of elements
-            let attrs = els[i].getAttributeNames().reduce((acc, name) => {  //create an object of the attributes
-                return {...acc, [name]: els[i].getAttribute(name)};
-            }, {});
-            let el = document.createElement(attrs["el"]);                   //create a new element using the el attribute
-            for (let key in attrs){                                         //loop through the artray of attributes
-                if(attrs.hasOwnProperty(key) && key != "el"){               //filter out the el attribute
-                    el.setAttribute(`${key}`, `${attrs[key]}`);             //add all other attributes to the new element
-                }
+document.addEventListener("DOMContentLoaded", function () {
+    //register the custom element
+    window.customElements.define('f-f', class extends HTMLElement {});
+    //get an array of f-f elements to convert
+    const els = document.getElementsByTagName("f-f");
+    //loop through the array of elements
+    for (let i=els.length-1;i>=0;i--){
+        //create an object of the attributes
+        let attrs = els[i].getAttributeNames().reduce((acc, name) => {
+            return {...acc, [name]: els[i].getAttribute(name)};
+        }, {});
+        //create a new element using the el attribute
+        let el = document.createElement(attrs["el"]);
+        //loop through the array of attributes
+        for (let key in attrs){
+            //filter out the el attribute
+            if(attrs.hasOwnProperty(key) && key != "el"){
+                //add all other attributes to the new element
+                el.setAttribute(`${key}`, `${attrs[key]}`);
             }
-            while (els[i].childNodes.length > 0) {                          //loop though the child nodes of the f-f
-                el.appendChild(els[i].childNodes[0]);                       //append child nodes to the new element
-            }
-            els[i].parentNode.insertBefore(el, els[i]);                     //insert the new element into the DOM
-            els[i].remove();                                                //remove the f-f element from the DOM
         }
-    });
+        //loop though the child nodes of the f-f
+        while (els[i].childNodes.length > 0) {
+            //append child nodes to the new element
+            el.appendChild(els[i].childNodes[0]);
+        }
+        //insert the new element into the DOM
+        els[i].parentNode.insertBefore(el, els[i]);
+        //remove the f-f element from the DOM
+        els[i].remove();
+    }
+});
 </script>
 ```
 
@@ -90,7 +102,7 @@ This method implments a small bit of Javascript that converts one html element t
 </form>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        window.customElements.define('f-f', class extends HTMLElement {}); //register the custom element 
+        window.customElements.define('f-f', class extends HTMLElement {});
         const els = document.getElementsByTagName("f-f");
         for (let i=els.length-1;i>=0;i--){
             let attrs = els[i].getAttributeNames().reduce((acc, name) => {
