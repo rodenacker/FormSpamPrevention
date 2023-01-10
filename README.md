@@ -6,9 +6,9 @@ A reliable method to prevent spam bots from completing input, select and textare
 
 Use a small bit of Javascript to convert custom tags to valid form tags. 
 
-The example below converts \<f-f>\</f-f> tags to input, select and textarea tags after the page loads. This means the page html does not need to contain such tags and spam bots cannot populate them. The JS is very fast, so human page visitors do not notice the conversion. 
-
 ## Usage
+
+The example below converts \<f-f>\</f-f> tags to input, select and textarea tags after the page loads. This means the page html does not need to contain such tags and spam bots cannot populate them. The JS is very fast, so human page visitors do not notice the conversion. 
 
 1. Add an opening and a closing tag (!) with the name f-f
 ```
