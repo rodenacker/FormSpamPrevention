@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FormSpam Prevention</title>
-</head>
-<body>
-    <form action="" method="POST">
-        <div>
-            <span>Your Name</span>
-            <f-f el="input" type="text" name="firstname" class="formel" placeholder="first name"></f-f>
-            <f-f el="input" type="text" name="lastname" class="formel" placeholder="last name"></f-f>
-        </div>
-        <div>
-            <span>Email</span>
-            <f-f el="input" type="email" onclick="myValidationScript();"></f-f>
-        </div>
-        <div>
-            <span>Message1</span>
-            <f-f el="textarea" name="message1" style="height:40px;width:200px;"></f-f>
-        </div>
-        <div>
-            <span>Message2</span>
-            <f-f el="textarea" name="message2" style="height:40px;width:200px;"></f-f>
-        </div>
-        <div>
-            <span>Select</span>
-            <f-f el="select" name="mycheckbox2"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option></f-f>
-        </div>
-        <div>
-            <span>Checkboxes</span>
-            <f-f el="input" type="checkbox" name="mycheckbox1" value="Green" checked></f-f>
-            <f-f el="input" type="checkbox" name="mycheckbox2" value="Blue"></f-f>
-        </div>
-        <div>
-            <span>Radio Buttons</span>
-            <f-f el="input" type="radio" name="myradio" value="Yes" checked></f-f>
-            <f-f el="input" type="radio" name="myradio" value="No"></f-f>
-        </div>
-        <f-f el="input" type="button" name="submit" value="Submit"></f-f>
-    </form>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            window.customElements.define('f-f', class extends HTMLElement {});
-            const els = document.getElementsByTagName("f-f");
-            for (let i=els.length-1;i>=0;i--){
-                let attrs = els[i].getAttributeNames().reduce((acc, name) => {
-                    return {...acc, [name]: els[i].getAttribute(name)};
-                }, {});
-                let el = document.createElement(attrs["el"]);
-                for (let key in attrs){
-                    if(attrs.hasOwnProperty(key) && key != "el"){
-                        el.setAttribute(`${key}`, `${attrs[key]}`);
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FormSpam Prevention</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <div>
+                <span>Your Name</span>
+                <f-f el="input" type="text" name="firstname" class="formel" placeholder="first name"></f-f>
+                <f-f el="input" type="text" name="lastname" class="formel" placeholder="last name"></f-f>
+            </div>
+            <div>
+                <span>Email</span>
+                <f-f el="input" type="email" onclick="myValidationScript();"></f-f>
+            </div>
+            <div>
+                <span>Message1</span>
+                <f-f el="textarea" name="message1" style="height: 40px; width: 200px"></f-f>
+            </div>
+            <div>
+                <span>Message2</span>
+                <f-f el="textarea" name="message2" style="height: 40px; width: 200px"></f-f>
+            </div>
+            <div>
+                <span>Select</span>
+                <f-f el="select" name="mycheckbox2">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                </f-f>
+            </div>
+            <div>
+                <span>Checkboxes</span>
+                <f-f el="input" type="checkbox" name="mycheckbox1" value="Green" checked></f-f>
+                <f-f el="input" type="checkbox" name="mycheckbox2" value="Blue"></f-f>
+            </div>
+            <div>
+                <span>Radio Buttons</span>
+                <f-f el="input" type="radio" name="myradio" value="Yes" checked></f-f>
+                <f-f el="input" type="radio" name="myradio" value="No"></f-f>
+            </div>
+            <f-f el="button" type="button">Submit</f-f>&nbsp;<f-f el="input" type="button" name="submit" value="Cancel"></f-f>
+        </form>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                window.customElements.define("f-f", class extends HTMLElement {});
+                const els = document.getElementsByTagName("f-f");
+                for (let i = els.length - 1; i >= 0; i--) {
+                    let attrs = els[i].getAttributeNames().reduce((acc, name) => {
+                        return { ...acc, [name]: els[i].getAttribute(name) };
+                    }, {});
+                    let el = document.createElement(attrs["el"]);
+                    for (let key in attrs) {
+                        if (attrs.hasOwnProperty(key) && key != "el") {
+                            el.setAttribute(`${key}`, `${attrs[key]}`);
+                        }
                     }
+                    while (els[i].childNodes.length > 0) {
+                        el.appendChild(els[i].childNodes[0]);
+                    }
+                    els[i].parentNode.insertBefore(el, els[i]);
+                    els[i].remove();
                 }
-                while (els[i].childNodes.length > 0) {
-                    el.appendChild(els[i].childNodes[0]);
-                }
-                els[i].parentNode.insertBefore(el, els[i]);
-                els[i].remove();
-            }
-        });
-    </script>
-</body>
+            });
+        </script>
+    </body>
 </html>

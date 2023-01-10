@@ -27,6 +27,8 @@ The example below converts \<f-f>\</f-f> tags to input, select and textarea tags
 <f-f el="input" type="radio" name="mycheckbox" value="No" checked></f-f>
 <f-f el="textarea" name="message" style="height:40px;width:200px;"></f-f>
 <f-f el="select" name="mycheckbox2"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option></f-f>
+<f-f el="button" type="button">Submit</f-f>
+<f-f el="input" type="button" name="submit" value="Cancel"></f-f>
 ```
 4. Add the script below to the page. When the page loads it creates a new element using the "el" attribute in all f-f elements. It then adds all other attributes and all child elements to the new element before removing the f-f element from the DOM.
 ```
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <f-f el="input" type="radio" name="myradio" value="Yes" checked></f-f>
         <f-f el="input" type="radio" name="myradio" value="No"></f-f>
     </div>
-    <f-f el="input" type="button" name="submit" value="Submit"></f-f>
+    <f-f el="button" type="button">Submit</f-f>&nbsp;<f-f el="input" type="button" name="submit" value="Cancel"></f-f>
 </form>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
