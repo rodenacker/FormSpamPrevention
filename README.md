@@ -4,7 +4,9 @@ A reliable method to prevent spam bots from completing input, select and textare
 
 ## How it works
 
-This method implments a small bit of Javascript that converts one html element to another one. The example below converts \<f-f>\</f-f> elements to other html form elements when the page loads. When using this method a page html does not need to contain any input, select or textarea elements that bots populate (works in June 2022). 
+Use a small bit of Javascript to convert custom tags to form tags after the page loads. 
+
+The example below converts \<f-f>\</f-f> tags to input, select and textarea tags after the page loads. This means the page html does not need to contain form tags and spam bots do not find fields to populate. The JS is very fast, so page visitors do not notice the conversion. 
 
 ## Usage
 
