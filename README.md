@@ -14,7 +14,7 @@ The example below converts \<f-f>\</f-f> tags to input, select and textarea tags
 ```
 <f-f></f-f>
 ```
-2. Add a "el" attribute with the element you want to create
+2. Add an "el" attribute with the element you want to create
 ```
 <f-f el="input"></f-f>
 <f-f el="textarea"></f-f>
