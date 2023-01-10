@@ -19,6 +19,7 @@ The example below converts \<f-f>\</f-f> tags to input, select and textarea tags
 <f-f el="input"></f-f>
 <f-f el="textarea"></f-f>
 <f-f el="select"></f-f>
+<f-f el="button"></f-f>
 ```
 3. Add any attributes you want your element to have
 ```
