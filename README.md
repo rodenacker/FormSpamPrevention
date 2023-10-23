@@ -11,18 +11,18 @@ Use a small bit of Javascript to convert custom tags to valid form tags.
 The example below converts \<f-f>\</f-f> tags to input, select and textarea tags after the page loads. This means the page html does not need to contain such tags and spam bots cannot populate them. The JS is very fast, so human page visitors do not notice the conversion. 
 
 1. Add an opening and a closing tag (!) with the name f-f
-```
+```html
 <f-f></f-f>
 ```
 2. Add an "el" attribute with the element you want to create
-```
+```html
 <f-f el="input"></f-f>
 <f-f el="textarea"></f-f>
 <f-f el="select"></f-f>
 <f-f el="button"></f-f>
 ```
 3. Add any attributes you want your element to have
-```
+```html
 <f-f el="input" type="text" name="name" class="formel"></f-f>
 <f-f el="input" type="checkbox" name="mycheckbox" value="Yes" checked></f-f>
 <f-f el="input" type="radio" name="mycheckbox" value="No" checked></f-f>
@@ -32,7 +32,7 @@ The example below converts \<f-f>\</f-f> tags to input, select and textarea tags
 <f-f el="input" type="button" name="submit" value="Cancel"></f-f>
 ```
 4. Add the script below to the page. When the page loads it creates a new element using the "el" attribute in all f-f elements. It then adds all other attributes and all child elements to the new element before removing the f-f element from the DOM.
-```
+```html
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     //register the custom element
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 ```
 
 ## Full Example
-```
+```html
 <form action="" method="POST">
     <div>
         <span>Your Name</span>
